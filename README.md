@@ -102,9 +102,6 @@ PM system/
 │   │   │   └── resources/
 │   │   │       └── application.properties
 │   │   └── test/                        # Test files
-│   ├── database/                        # Database scripts
-│   │   ├── promotion_db.sql             # Database schema & initial data
-│   │   └── README.md                    # Database setup guide
 │   ├── pom.xml                          # Maven configuration
 │   └── README.md                        # Backend documentation
 │
@@ -147,37 +144,14 @@ cd Promotion-Management-System
 
 ### Step 2: Database Setup
 
-#### Option A: Using SQL Script (Recommended)
-
 1. Start MySQL server
-2. Run the database script:
-```bash
-mysql -u root -p < promotion-system/database/promotion_db.sql
-```
-Or import `promotion-system/database/promotion_db.sql` using MySQL Workbench.
+2. Create the database:
 
-This will:
-- ✅ Create the `promotion_db` database
-- ✅ Create all required tables (`users`, `promotions`)
-- ✅ Insert default admin and user accounts with BCrypt-hashed passwords
-
-**Default Credentials:**
-- Admin: `admin` / `admin123`
-- User: `user` / `user123`
-
-#### Option B: Using JPA Auto-Create
-
-1. Start MySQL server
-2. Create database manually:
 ```sql
 CREATE DATABASE promotion_db;
 ```
-3. Spring Boot will automatically create tables on first run
-4. Default users will be created by `DataInitializer.java`
 
-#### Update Database Credentials
-
-Update `promotion-system/src/main/resources/application.properties`:
+3. Update database credentials in `promotion-system/src/main/resources/application.properties`:
 
 ```properties
 spring.datasource.username=root
