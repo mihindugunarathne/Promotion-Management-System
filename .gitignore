@@ -13,3 +13,9 @@ Thumbs.db
 uploads/
 *.log
 
+# Build artifacts
+target/
+node_modules/
+build/
+dist/
+

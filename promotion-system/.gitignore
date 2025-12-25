@@ -36,8 +36,3 @@ build/
 uploads/
 *.log
 application-local.properties
-
-### Test scripts (optional - you can remove this if you want to commit test scripts) ###
-# *.ps1
-# test-*.ps1
-# diagnose-*.ps1
