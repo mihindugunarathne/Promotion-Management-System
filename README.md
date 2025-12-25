@@ -7,21 +7,6 @@ A full-stack web application for managing promotions with user authentication, r
 ![React](https://img.shields.io/badge/React-18.2.0-blue)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
 
-## 📋 Table of Contents
-
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation & Setup](#installation--setup)
-- [Running the Application](#running-the-application)
-- [Default Credentials](#default-credentials)
-- [API Documentation](#api-documentation)
-- [Frontend Features](#frontend-features)
-- [Screenshots](#screenshots)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## ✨ Features
 
@@ -127,11 +112,6 @@ Before you begin, ensure you have the following installed:
 - **Maven 3.6+** (or use Maven wrapper included)
 - **Git** (for cloning the repository)
 
-### IDE Recommendations
-
-- **IntelliJ IDEA** (for backend development)
-- **VSCode** (for frontend development)
-- Or use VSCode for both (with Java extensions)
 
 ## 🚀 Installation & Setup
 
@@ -219,14 +199,6 @@ cd promotion-system
 cd frontend
 npm start
 ```
-
-### Using VSCode Tasks (Optional)
-
-If you have `.vscode/tasks.json` configured:
-
-1. Press `Ctrl + Shift + P`
-2. Type: `Tasks: Run Task`
-3. Select: `Start All`
 
 ## 🔐 Default Credentials
 
@@ -342,129 +314,8 @@ file: [image file]
 ```http
 GET /uploads/{filename}
 ```
-
 Access uploaded banner images directly via URL.
 
-## 🎨 Frontend Features
-
-### Login Page
-
-- Clean, modern design
-- Username/password authentication
-- Error handling
-- Automatic redirect based on role
-
-### Dashboard
-
-- Welcome screen with user information
-- Quick access cards
-- Role-based navigation
-- Logout functionality
-
-### User Management (Admin Only)
-
-- Table view of all users
-- Create user modal
-- Edit user modal
-- Delete with confirmation
-- Role and status badges
-
-### Promotion Management
-
-- Card grid layout
-- Create promotion form with:
-  - Name input
-  - Start/End date pickers
-  - Image upload with preview
-- Edit promotion
-- Delete with confirmation
-- Image display
-
-## 🖼 Screenshots
-
-### Login Page
-
-- Modern gradient design
-- Default credentials displayed
-
-### Dashboard
-
-- Role-based navigation
-- Quick access to features
-
-### Promotion Management
-
-- Card-based layout
-- Image preview
-- Date display
-
-## 🔧 Configuration
-
-### Backend Configuration (`application.properties`)
-
-```properties
-# Server
-server.port=8080
-
-# Database
-spring.datasource.url=jdbc:mysql://localhost:3306/promotion_db
-spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD_HERE
-
-# JWT
-jwt.secret=MySecretKeyForPromotionSystemJWT2024ThisIsVerySecureAndLongEnough
-jwt.expiration=86400000
-
-# File Upload
-spring.servlet.multipart.max-file-size=10MB
-file.upload-dir=uploads/banners
-```
-
-### Frontend Configuration
-
-The frontend is configured to connect to:
-
-- Backend API: `http://localhost:8080`
-- CORS is enabled for `http://localhost:3000`
-
-## 🐛 Troubleshooting
-
-### Backend Issues
-
-**Problem**: Database connection error
-
-- **Solution**: Ensure MySQL is running and credentials are correct in `application.properties`
-
-**Problem**: Port 8080 already in use
-
-- **Solution**: Change `server.port` in `application.properties` or stop the process using port 8080
-
-**Problem**: 403 Forbidden errors
-
-- **Solution**: Check JWT token is included in Authorization header as `Bearer <token>`
-
-### Frontend Issues
-
-**Problem**: CORS errors
-
-- **Solution**: Ensure backend is running and CORS is configured for `http://localhost:3000`
-
-**Problem**: Cannot connect to API
-
-- **Solution**: Verify backend is running on `http://localhost:8080`
-
-**Problem**: Module not found
-
-- **Solution**: Run `npm install` in the frontend directory
-
-### File Upload Issues
-
-**Problem**: File upload fails
-
-- **Solution**:
-  - Check file size (max 10MB)
-  - Verify file is an image (JPG, PNG, GIF)
-  - Ensure `uploads/banners/` directory has write permissions
 
 ## 🧪 Testing
 
@@ -501,42 +352,3 @@ Use tools like:
 - CORS configuration
 - Input validation
 
-## 🤝 Contributing
-
-This is an assignment project. For improvements:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## 📄 License
-
-This project is developed as an assignment submission.
-
-## 👤 Author
-
-**Mihindu Gunarathne**
-
-- GitHub: [@mihindugunarathne](https://github.com/mihindugunarathne)
-- Repository: [Promotion-Management-System](https://github.com/mihindugunarathne/Promotion-Management-System)
-
-## 🙏 Acknowledgments
-
-- Spring Boot team for the excellent framework
-- React team for the powerful frontend library
-- All open-source contributors
-
----
-
-## 📞 Support
-
-For issues or questions:
-
-1. Check the Troubleshooting section
-2. Review the code documentation
-3. Check application logs for detailed error messages
-
----
-
-**Built with ❤️ using Spring Boot and React**
