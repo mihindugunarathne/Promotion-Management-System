@@ -1,116 +1,542 @@
 # Promotion Management System
 
-Full-stack Promotion Management System with Spring Boot backend and React frontend.
+A full-stack web application for managing promotions with user authentication, role-based access control, and image upload capabilities. Built with Spring Boot backend and React frontend.
 
-## Project Structure
+![Java](https://img.shields.io/badge/Java-17-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-brightgreen)
+![React](https://img.shields.io/badge/React-18.2.0-blue)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
 
-```
-PM system/
-├── promotion-system/     # Backend (Spring Boot)
-│   ├── src/             # Java source code
-│   ├── pom.xml          # Maven configuration
-│   └── README.md        # Backend documentation
-└── frontend/            # Frontend (React)
-    ├── src/             # React source code
-    ├── package.json     # NPM configuration
-    └── README.md        # Frontend documentation
-```
+## 📋 Table of Contents
 
-## Quick Start
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation & Setup](#installation--setup)
+- [Running the Application](#running-the-application)
+- [Default Credentials](#default-credentials)
+- [API Documentation](#api-documentation)
+- [Frontend Features](#frontend-features)
+- [Screenshots](#screenshots)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
+- [License](#license)
 
-### Option 1: Run Everything in VSCode (Recommended)
+## ✨ Features
 
-1. Open VSCode
-2. File → Open Folder → Select `PM system` folder (root)
-3. Install extensions:
-   - Extension Pack for Java (Microsoft)
-   - Spring Boot Extension Pack (VMware)
-4. Open terminal (Ctrl + `)
-5. **Terminal 1** - Start Backend:
-   ```bash
-   cd promotion-system
-   ./mvnw spring-boot:run
-   ```
-6. **Terminal 2** - Start Frontend:
-   ```bash
-   cd frontend
-   npm install  # First time only
-   npm start
-   ```
+### Authentication & Authorization
 
-Or use VSCode Tasks: `Ctrl + Shift + P` → `Tasks: Run Task` → `Start All`
+- ✅ JWT token-based authentication
+- ✅ Role-based access control (ADMIN, USER)
+- ✅ Secure password encryption using BCrypt
+- ✅ Session management
 
-See `VSCODE_SETUP.md` for detailed VSCode setup instructions.
+### User Management (Admin Only)
 
-### Option 2: Separate IDEs
+- ✅ Create new user accounts
+- ✅ View all users
+- ✅ Edit user information
+- ✅ Delete user accounts
+- ✅ User role and status management
 
-**Backend in IntelliJ IDEA:**
+### Promotion Management
 
-1. Open IntelliJ IDEA
-2. File → Open → Select `promotion-system` folder
-3. Run `PromotionSystemApplication.java`
-4. Backend runs on `http://localhost:8080`
+- ✅ Create promotions with:
+  - Name
+  - Start Date
+  - End Date
+  - Banner Image Upload
+- ✅ View all promotions
+- ✅ Edit existing promotions
+- ✅ Delete promotions
+- ✅ Image preview and display
 
-**Frontend in VSCode:**
+### Additional Features
 
-1. Open VSCode
-2. File → Open Folder → Select `frontend` folder
-3. Terminal: `npm install` then `npm start`
-4. Frontend runs on `http://localhost:3000`
+- ✅ Responsive design
+- ✅ Modern UI with CSS
+- ✅ File upload with validation
+- ✅ Date validation
+- ✅ Error handling
+- ✅ RESTful API design
 
-## Default Credentials
-
-- **Admin**: `admin` / `admin123`
-- **User**: `user` / `user123`
-
-## Technology Stack
+## 🛠 Technology Stack
 
 ### Backend
 
-- Spring Boot 3.2.0
-- Java 17
-- MySQL 8.0
-- Spring Security with JWT
-- Spring Data JPA
+- **Framework**: Spring Boot 3.2.0
+- **Language**: Java 17
+- **Database**: MySQL 8.0
+- **Security**: Spring Security with JWT
+- **ORM**: Spring Data JPA (Hibernate)
+- **Build Tool**: Maven
+- **Libraries**:
+  - JWT (jjwt 0.11.5)
+  - Lombok
+  - Validation
 
 ### Frontend
 
-- React 18.2.0
-- React Router DOM
-- CSS3 (No frameworks)
+- **Framework**: React 18.2.0
+- **Routing**: React Router DOM 6.20.0
+- **Styling**: CSS3 (No frameworks)
+- **Build Tool**: Create React App
+- **HTTP Client**: Fetch API
 
-## Features
+## 📁 Project Structure
 
-- ✅ JWT-based authentication
-- ✅ User management (Admin only)
-- ✅ Promotion management with image upload
-- ✅ Role-based access control
-- ✅ RESTful API
-- ✅ Modern responsive UI
+```
+PM system/
+├── promotion-system/          # Backend (Spring Boot)
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/example/promotion_system/
+│   │   │   │       ├── config/          # Security, JWT, Web config
+│   │   │   │       ├── controller/       # REST controllers
+│   │   │   │       ├── dto/             # Data Transfer Objects
+│   │   │   │       ├── entity/          # JPA entities
+│   │   │   │       ├── repository/      # Spring Data JPA repositories
+│   │   │   │       └── service/         # Business logic
+│   │   │   └── resources/
+│   │   │       └── application.properties
+│   │   └── test/                        # Test files
+│   ├── pom.xml                          # Maven configuration
+│   └── README.md                        # Backend documentation
+│
+└── frontend/                            # Frontend (React)
+    ├── public/
+    │   └── index.html
+    ├── src/
+    │   ├── components/                  # React components
+    │   ├── services/                     # API services
+    │   ├── App.js
+    │   └── index.js
+    ├── package.json                      # NPM configuration
+    └── README.md                         # Frontend documentation
+```
 
-## Documentation
+## 📦 Prerequisites
 
-- Backend details: See `promotion-system/README.md`
-- Frontend details: See `frontend/README.md`
+Before you begin, ensure you have the following installed:
 
-## Development Setup
+- **Java 17** or later
+- **Node.js 14** or later
+- **MySQL 8.0** or later
+- **Maven 3.6+** (or use Maven wrapper included)
+- **Git** (for cloning the repository)
 
-### Prerequisites
+### IDE Recommendations
 
-- Java 17+
-- Node.js 14+
-- MySQL 8.0+
-- IntelliJ IDEA (for backend)
-- VSCode (for frontend)
+- **IntelliJ IDEA** (for backend development)
+- **VSCode** (for frontend development)
+- Or use VSCode for both (with Java extensions)
 
-### Database Setup
+## 🚀 Installation & Setup
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/mihindugunarathne/Promotion-Management-System.git
+cd Promotion-Management-System
+```
+
+### Step 2: Database Setup
+
+1. Start MySQL server
+2. Create the database:
 
 ```sql
 CREATE DATABASE promotion_db;
 ```
 
-Update credentials in `promotion-system/src/main/resources/application.properties`
+3. Update database credentials in `promotion-system/src/main/resources/application.properties`:
 
-## License
+```properties
+spring.datasource.username=root
+spring.datasource.password=YOUR_PASSWORD_HERE
+```
+
+### Step 3: Backend Setup
+
+#### Option A: Using IntelliJ IDEA
+
+1. Open IntelliJ IDEA
+2. File → Open → Select `promotion-system` folder
+3. Wait for Maven to sync dependencies
+4. Run `PromotionSystemApplication.java`
+
+#### Option B: Using Command Line
+
+```bash
+cd promotion-system
+./mvnw spring-boot:run
+# Or on Windows:
+mvnw.cmd spring-boot:run
+```
+
+The backend will start on `http://localhost:8080`
+
+### Step 4: Frontend Setup
+
+#### Option A: Using VSCode
+
+1. Open VSCode
+2. File → Open Folder → Select `frontend` folder
+3. Open terminal (Ctrl + `)
+4. Run:
+
+```bash
+npm install
+npm start
+```
+
+#### Option B: Using Command Line
+
+```bash
+cd frontend
+npm install
+npm start
+```
+
+The frontend will start on `http://localhost:3000`
+
+## 🎮 Running the Application
+
+### Running Both Services
+
+**Terminal 1 (Backend):**
+
+```bash
+cd promotion-system
+./mvnw spring-boot:run
+```
+
+**Terminal 2 (Frontend):**
+
+```bash
+cd frontend
+npm start
+```
+
+### Using VSCode Tasks (Optional)
+
+If you have `.vscode/tasks.json` configured:
+
+1. Press `Ctrl + Shift + P`
+2. Type: `Tasks: Run Task`
+3. Select: `Start All`
+
+## 🔐 Default Credentials
+
+The following users are automatically created when the backend starts:
+
+### Admin User
+
+- **Username**: `admin`
+- **Password**: `admin123`
+- **Role**: ADMIN
+- **Access**: Full access to all features including user management
+
+### Regular User
+
+- **Username**: `user`
+- **Password**: `user123`
+- **Role**: USER
+- **Access**: Promotion management only
+
+## 📡 API Documentation
+
+### Base URL
+
+```
+http://localhost:8080/api
+```
+
+### Authentication
+
+#### Login
+
+```http
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin123"
+}
+```
+
+**Response:**
+
+```json
+{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "type": "Bearer",
+  "id": 1,
+  "username": "admin",
+  "email": "admin@promotionsystem.com",
+  "role": "ADMIN"
+}
+```
+
+**Note**: Include the token in subsequent requests:
+
+```
+Authorization: Bearer <token>
+```
+
+### User Management (Admin Only)
+
+| Method | Endpoint                | Description    |
+| ------ | ----------------------- | -------------- |
+| GET    | `/api/admin/users`      | Get all users  |
+| POST   | `/api/admin/users`      | Create user    |
+| GET    | `/api/admin/users/{id}` | Get user by ID |
+| PUT    | `/api/admin/users/{id}` | Update user    |
+| DELETE | `/api/admin/users/{id}` | Delete user    |
+
+**Example - Create User:**
+
+```http
+POST /api/admin/users
+Authorization: Bearer <admin_token>
+Content-Type: application/json
+
+{
+  "username": "newuser",
+  "password": "password123",
+  "email": "user@example.com",
+  "role": "USER"
+}
+```
+
+### Promotion Management
+
+| Method | Endpoint               | Description         |
+| ------ | ---------------------- | ------------------- |
+| GET    | `/api/promotions`      | Get all promotions  |
+| POST   | `/api/promotions`      | Create promotion    |
+| GET    | `/api/promotions/{id}` | Get promotion by ID |
+| PUT    | `/api/promotions/{id}` | Update promotion    |
+| DELETE | `/api/promotions/{id}` | Delete promotion    |
+
+**Example - Create Promotion (with file upload):**
+
+```http
+POST /api/promotions
+Authorization: Bearer <token>
+Content-Type: multipart/form-data
+
+promotion: {
+  "name": "Summer Sale 2024",
+  "startDate": "2024-06-01",
+  "endDate": "2024-08-31"
+}
+file: [image file]
+```
+
+### File Access
+
+```http
+GET /uploads/{filename}
+```
+
+Access uploaded banner images directly via URL.
+
+## 🎨 Frontend Features
+
+### Login Page
+
+- Clean, modern design
+- Username/password authentication
+- Error handling
+- Automatic redirect based on role
+
+### Dashboard
+
+- Welcome screen with user information
+- Quick access cards
+- Role-based navigation
+- Logout functionality
+
+### User Management (Admin Only)
+
+- Table view of all users
+- Create user modal
+- Edit user modal
+- Delete with confirmation
+- Role and status badges
+
+### Promotion Management
+
+- Card grid layout
+- Create promotion form with:
+  - Name input
+  - Start/End date pickers
+  - Image upload with preview
+- Edit promotion
+- Delete with confirmation
+- Image display
+
+## 🖼 Screenshots
+
+### Login Page
+
+- Modern gradient design
+- Default credentials displayed
+
+### Dashboard
+
+- Role-based navigation
+- Quick access to features
+
+### Promotion Management
+
+- Card-based layout
+- Image preview
+- Date display
+
+## 🔧 Configuration
+
+### Backend Configuration (`application.properties`)
+
+```properties
+# Server
+server.port=8080
+
+# Database
+spring.datasource.url=jdbc:mysql://localhost:3306/promotion_db
+spring.datasource.username=root
+spring.datasource.password=YOUR_PASSWORD_HERE
+
+# JWT
+jwt.secret=MySecretKeyForPromotionSystemJWT2024ThisIsVerySecureAndLongEnough
+jwt.expiration=86400000
+
+# File Upload
+spring.servlet.multipart.max-file-size=10MB
+file.upload-dir=uploads/banners
+```
+
+### Frontend Configuration
+
+The frontend is configured to connect to:
+
+- Backend API: `http://localhost:8080`
+- CORS is enabled for `http://localhost:3000`
+
+## 🐛 Troubleshooting
+
+### Backend Issues
+
+**Problem**: Database connection error
+
+- **Solution**: Ensure MySQL is running and credentials are correct in `application.properties`
+
+**Problem**: Port 8080 already in use
+
+- **Solution**: Change `server.port` in `application.properties` or stop the process using port 8080
+
+**Problem**: 403 Forbidden errors
+
+- **Solution**: Check JWT token is included in Authorization header as `Bearer <token>`
+
+### Frontend Issues
+
+**Problem**: CORS errors
+
+- **Solution**: Ensure backend is running and CORS is configured for `http://localhost:3000`
+
+**Problem**: Cannot connect to API
+
+- **Solution**: Verify backend is running on `http://localhost:8080`
+
+**Problem**: Module not found
+
+- **Solution**: Run `npm install` in the frontend directory
+
+### File Upload Issues
+
+**Problem**: File upload fails
+
+- **Solution**:
+  - Check file size (max 10MB)
+  - Verify file is an image (JPG, PNG, GIF)
+  - Ensure `uploads/banners/` directory has write permissions
+
+## 🧪 Testing
+
+### Manual Testing
+
+1. Login with admin credentials
+2. Test user management (create, edit, delete)
+3. Test promotion management (create with image, edit, delete)
+4. Login with user credentials
+5. Verify user cannot access admin endpoints
+
+### API Testing
+
+Use tools like:
+
+- Postman
+- cURL
+- Browser DevTools
+
+## 📝 Development Notes
+
+### Design Patterns Used
+
+- **Repository Pattern**: Spring Data JPA repositories
+- **Service Layer Pattern**: Business logic separation
+- **DTO Pattern**: Data transfer objects
+- **Singleton Pattern**: Spring beans
+
+### Security Features
+
+- JWT token expiration (24 hours)
+- Password encryption (BCrypt)
+- Role-based access control
+- CORS configuration
+- Input validation
+
+## 🤝 Contributing
+
+This is an assignment project. For improvements:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📄 License
 
 This project is developed as an assignment submission.
+
+## 👤 Author
+
+**Mihindu Gunarathne**
+
+- GitHub: [@mihindugunarathne](https://github.com/mihindugunarathne)
+- Repository: [Promotion-Management-System](https://github.com/mihindugunarathne/Promotion-Management-System)
+
+## 🙏 Acknowledgments
+
+- Spring Boot team for the excellent framework
+- React team for the powerful frontend library
+- All open-source contributors
+
+---
+
+## 📞 Support
+
+For issues or questions:
+
+1. Check the Troubleshooting section
+2. Review the code documentation
+3. Check application logs for detailed error messages
+
+---
+
+**Built with ❤️ using Spring Boot and React**
