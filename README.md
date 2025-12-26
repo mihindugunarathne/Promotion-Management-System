@@ -7,67 +7,21 @@ A full-stack web application for managing promotions with user authentication, r
 ![React](https://img.shields.io/badge/React-18.2.0-blue)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
 
+## Features
 
-## ✨ Features
+A secure, full-stack promotion management application with:
 
-### Authentication & Authorization
+- JWT authentication and role-based authorization (ADMIN, USER)
+- User management (CRUD) for administrators
+- Promotion management (CRUD) with image upload and preview
+- RESTful API, validation, and file upload support
 
-- ✅ JWT token-based authentication
-- ✅ Role-based access control (ADMIN, USER)
-- ✅ Secure password encryption using BCrypt
-- ✅ Session management
+## Technology
 
-### User Management (Admin Only)
-
-- ✅ Create new user accounts
-- ✅ View all users
-- ✅ Edit user information
-- ✅ Delete user accounts
-- ✅ User role and status management
-
-### Promotion Management
-
-- ✅ Create promotions with:
-  - Name
-  - Start Date
-  - End Date
-  - Banner Image Upload
-- ✅ View all promotions
-- ✅ Edit existing promotions
-- ✅ Delete promotions
-- ✅ Image preview and display
-
-### Additional Features
-
-- ✅ Responsive design
-- ✅ Modern UI with CSS
-- ✅ File upload with validation
-- ✅ Date validation
-- ✅ Error handling
-- ✅ RESTful API design
-
-## 🛠 Technology Stack
-
-### Backend
-
-- **Framework**: Spring Boot 3.2.0
-- **Language**: Java 17
-- **Database**: MySQL 8.0
-- **Security**: Spring Security with JWT
-- **ORM**: Spring Data JPA (Hibernate)
-- **Build Tool**: Maven
-- **Libraries**:
-  - JWT (jjwt 0.11.5)
-  - Lombok
-  - Validation
-
-### Frontend
-
-- **Framework**: React 18.2.0
-- **Routing**: React Router DOM 6.20.0
-- **Styling**: CSS3 (No frameworks)
-- **Build Tool**: Create React App
-- **HTTP Client**: Fetch API
+- Backend: Spring Boot 3.2.0 (Java 17), Spring Security (JWT), Spring Data JPA (Hibernate), Maven
+- Frontend: React 18.2.0 (Create React App), Fetch API
+- Database: MySQL
+- Notable libraries: jjwt, Lombok
 
 ## 📁 Project Structure
 
@@ -112,7 +66,6 @@ Before you begin, ensure you have the following installed:
 - **Maven 3.6+** (or use Maven wrapper included)
 - **Git** (for cloning the repository)
 
-
 ## 🚀 Installation & Setup
 
 ### Step 1: Clone the Repository
@@ -138,41 +91,23 @@ spring.datasource.username=root
 spring.datasource.password=YOUR_PASSWORD_HERE
 ```
 
-### Step 3: Backend Setup
+### Step 3: Backend — Start
 
-#### Option A: Using IntelliJ IDEA
-
-1. Open IntelliJ IDEA
-2. File → Open → Select `promotion-system` folder
-3. Wait for Maven to sync dependencies
-4. Run `PromotionSystemApplication.java`
-
-#### Option B: Using Command Line
+Run using the Maven wrapper or your IDE:
 
 ```bash
 cd promotion-system
+# macOS / Linux
 ./mvnw spring-boot:run
-# Or on Windows:
+# Windows
 mvnw.cmd spring-boot:run
 ```
 
-The backend will start on `http://localhost:8080`
+The backend will start on `http://localhost:8080`.
 
-### Step 4: Frontend Setup
+### Step 4: Frontend — Start
 
-#### Option A: Using VSCode
-
-1. Open VSCode
-2. File → Open Folder → Select `frontend` folder
-3. Open terminal (Ctrl + `)
-4. Run:
-
-```bash
-npm install
-npm start
-```
-
-#### Option B: Using Command Line
+Install dependencies and start the development server:
 
 ```bash
 cd frontend
@@ -180,7 +115,45 @@ npm install
 npm start
 ```
 
-The frontend will start on `http://localhost:3000`
+The frontend will be available at `http://localhost:3000`.
+
+### ✅ VS Code — Full Workspace Setup (recommended)
+
+Follow these steps to set up and run both backend and frontend entirely within Visual Studio Code.
+
+1. Open VS Code and choose **File → Open Folder...** then select the repository root folder (`PM system`).
+2. Recommended extensions to install:
+   - **Java Extension Pack** (Microsoft) — Java language support and debugger
+   - **Spring Boot Extension Pack** (Pivotal/VMware) — Spring Boot support
+   - **Maven for Java** — Maven integration
+   - **Debugger for Java** — run and debug Spring Boot app
+   - **ESLint** — JavaScript linting
+   - **Node.js Extension Pack** (optional) — Node debugging
+3. Install frontend dependencies (once):
+
+```bash
+# In VS Code terminal (select workspace root then):
+cd frontend
+npm install
+```
+
+4. Use the built-in tasks to start services:
+
+   - Run **Terminal → Run Task... → Start Backend** to start the backend (uses `mvnw.cmd spring-boot:run`).
+   - Run **Terminal → Run Task... → Start Frontend** to start the frontend (`npm start`).
+   - Or run **Start All** to start both at once.
+
+5. Tips & checks:
+   - Open **Run and Debug** to add or use a Spring Boot launch configuration if you prefer debugging the backend.
+   - Use the integrated terminal to view logs and the Problems panel for errors.
+   - Ensure the MySQL database (`promotion_db`) is running and credentials are set in `promotion-system/src/main/resources/application.properties`.
+
+Ports:
+
+- Backend: `http://localhost:8080`
+- Frontend: `http://localhost:3000`
+
+This setup keeps everything contained in VS Code and uses the provided tasks for quick startup and consistent behavior across Windows machines.
 
 ## 🎮 Running the Application
 
@@ -314,41 +287,10 @@ file: [image file]
 ```http
 GET /uploads/{filename}
 ```
+
 Access uploaded banner images directly via URL.
 
+## Testing & Development
 
-## 🧪 Testing
-
-### Manual Testing
-
-1. Login with admin credentials
-2. Test user management (create, edit, delete)
-3. Test promotion management (create with image, edit, delete)
-4. Login with user credentials
-5. Verify user cannot access admin endpoints
-
-### API Testing
-
-Use tools like:
-
-- Postman
-- cURL
-- Browser DevTools
-
-## 📝 Development Notes
-
-### Design Patterns Used
-
-- **Repository Pattern**: Spring Data JPA repositories
-- **Service Layer Pattern**: Business logic separation
-- **DTO Pattern**: Data transfer objects
-- **Singleton Pattern**: Spring beans
-
-### Security Features
-
-- JWT token expiration (24 hours)
-- Password encryption (BCrypt)
-- Role-based access control
-- CORS configuration
-- Input validation
-
+- For API testing use Postman or cURL. Key manual tests: authentication, user management (admin), and promotion CRUD with image upload.
+- The codebase follows common Spring patterns (controllers, services, repositories) and includes standard security practices (JWT, BCrypt).
