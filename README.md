@@ -84,11 +84,22 @@ cd Promotion-Management-System
 CREATE DATABASE promotion_db;
 ```
 
-3. Update database credentials in `promotion-system/src/main/resources/application.properties`:
+3. Create your `application.properties` from the provided template and add your credentials and secrets.
+
+```bash
+# Linux / macOS
+cp promotion-system/src/main/resources/application.properties.template promotion-system/src/main/resources/application.properties
+
+# Windows (PowerShell)
+Copy-Item -Path "promotion-system\src\main\resources\application.properties.template" -Destination "promotion-system\src\main\resources\application.properties"
+```
+
+Then open `promotion-system/src/main/resources/application.properties` and replace the placeholders:
 
 ```properties
-spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD_HERE
+spring.datasource.username=YOUR_DB_USERNAME
+spring.datasource.password=YOUR_DB_PASSWORD
+jwt.secret=REPLACE_WITH_RANDOM_SECRET
 ```
 
 ### Step 3: Backend — Start

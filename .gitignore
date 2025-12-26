@@ -1,21 +1,79 @@
-# IDE files
+# ============================================
+# IDE Files
+# ============================================
 .idea/
 .vscode/
 *.iml
 *.ipr
 *.iws
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
 
-# OS files
+# ============================================
+# OS Files
+# ============================================
 .DS_Store
 Thumbs.db
 
-# Application specific
+# ============================================
+# Maven (Spring Boot / promotion-system)
+# ============================================
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# ============================================
+# Node.js / React (frontend)
+# ============================================
+node_modules/
+.pnp
+.pnp.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ============================================
+# Build Artifacts
+# ============================================
+dist/
+coverage/
+
+# ============================================
+# Application Specific
+# ============================================
 uploads/
 *.log
 
-# Build artifacts
-target/
-node_modules/
-build/
-dist/
+# Spring Boot - ignore local properties and secrets
+application-local.properties
+# Ignore real application.properties containing secrets (use the provided template)
+promotion-system/src/main/resources/application.properties
+promotion-system/target/classes/application.properties
 
+# ============================================
+# Environment Files
+# ============================================
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ============================================
+# Other
+# ============================================
+HELP.md
