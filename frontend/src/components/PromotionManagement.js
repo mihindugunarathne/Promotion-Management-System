@@ -73,6 +73,15 @@ const PromotionManagement = () => {
   };
 
   const currentUser = authService.getUser();
+  
+  // Check if current user can edit/delete a promotion
+  const canEditDelete = (promotion) => {
+    if (!currentUser) return false;
+    // Admin can edit/delete any promotion
+    if (currentUser.role === 'ADMIN') return true;
+    // Users can only edit/delete promotions they created
+    return promotion.createdBy === currentUser.id;
+  };
 
   return (
     <div className="promotion-management">
@@ -139,20 +148,22 @@ const PromotionManagement = () => {
                           <span className="date-value">{formatDate(promotion.endDate)}</span>
                         </div>
                       </div>
-                      <div className="promotion-actions">
-                        <button
-                          onClick={() => handleEdit(promotion)}
-                          className="btn btn-secondary btn-sm"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDelete(promotion.id)}
-                          className="btn btn-danger btn-sm"
-                        >
-                          Delete
-                        </button>
-                      </div>
+                      {canEditDelete(promotion) && (
+                        <div className="promotion-actions">
+                          <button
+                            onClick={() => handleEdit(promotion)}
+                            className="btn btn-secondary btn-sm"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(promotion.id)}
+                            className="btn btn-danger btn-sm"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))

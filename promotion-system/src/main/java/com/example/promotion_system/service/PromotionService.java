@@ -62,6 +62,9 @@ public class PromotionService {
 
     public Promotion updatePromotion(Long id, PromotionRequest request, MultipartFile file) throws IOException {
         Promotion promotion = getPromotionById(id);
+        
+        // Check authorization: Admin can edit any promotion, users can only edit their own
+        checkAuthorization(promotion);
 
         promotion.setName(request.getName());
         promotion.setStartDate(request.getStartDate());
@@ -81,6 +84,9 @@ public class PromotionService {
 
     public void deletePromotion(Long id) {
         Promotion promotion = getPromotionById(id);
+        
+        // Check authorization: Admin can delete any promotion, users can only delete their own
+        checkAuthorization(promotion);
 
         // Delete banner image if exists
         if (promotion.getBannerImagePath() != null) {
@@ -119,5 +125,33 @@ public class PromotionService {
             return ((UserDetails) principal).getUsername();
         }
         return principal.toString();
+    }
+    
+    private User getCurrentUser() {
+        String username = getCurrentUsername();
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+    
+    private boolean isAdmin(User user) {
+        return "ADMIN".equalsIgnoreCase(user.getRole());
+    }
+    
+    private boolean isOwner(Promotion promotion, User user) {
+        return promotion.getCreatedBy() != null && promotion.getCreatedBy().equals(user.getId());
+    }
+    
+    private void checkAuthorization(Promotion promotion) {
+        User currentUser = getCurrentUser();
+        
+        // Admin can edit/delete any promotion
+        if (isAdmin(currentUser)) {
+            return;
+        }
+        
+        // Users can only edit/delete promotions they created
+        if (!isOwner(promotion, currentUser)) {
+            throw new RuntimeException("Unauthorized: You can only edit/delete promotions you created");
+        }
     }
 }
