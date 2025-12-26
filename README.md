@@ -27,7 +27,12 @@ A secure, full-stack promotion management application with:
 
 ```
 PM system/
-├── promotion-system/          # Backend (Spring Boot)
+├── database/                             # Database dump files
+│   ├── promotion_db.sql                 # MySQL database export
+│   ├── export_database.ps1              # PowerShell export script
+│   ├── export_database.bat               # Batch export script
+│   └── README.md                         # Database setup instructions
+├── promotion-system/                     # Backend (Spring Boot)
 │   ├── src/
 │   │   ├── main/
 │   │   │   ├── java/
@@ -84,7 +89,19 @@ cd Promotion-Management-System
 CREATE DATABASE promotion_db;
 ```
 
-3. Create your `application.properties` from the provided template and add your credentials and secrets.
+3. **Import the database** (if a database dump is provided):
+
+```bash
+# Using command line
+mysql -u YOUR_USERNAME -p promotion_db < database/promotion_db.sql
+
+# Or using MySQL Workbench:
+# Server → Data Import → Import from Self-Contained File → Select database/promotion_db.sql
+```
+
+**Note**: If no database dump is available, the application will create the schema automatically on first run using JPA.
+
+4. Create your `application.properties` from the provided template and add your credentials and secrets.
 
 ```bash
 # Linux / macOS
